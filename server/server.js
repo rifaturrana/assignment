@@ -5,8 +5,8 @@ const dotenv = require("dotenv");
 const bodyparser = require("body-parser");
 // const sample=require('./jsondata.json')
 // const data=require('./models/data')
-const path = require("path");
 const app = express();
+const data=require('./routes')
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use(bodyparser.json());
@@ -14,6 +14,9 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 
 dotenv.config();
+
+app.use('/api/data',data)
+
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
